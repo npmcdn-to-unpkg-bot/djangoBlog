@@ -1,0 +1,14 @@
+{% extends "blog/base.html" %}
+{% load django_markdown %}
+{% block content %}
+    <div class="container content">
+        <div class="col-sm-offset-1 col-sm-10 col-sm-offset-1">
+            <center><h1>{{ object.title }}</h1></center>
+            <center>
+                <small>{{ object.modified|date:"Y-m-d H:i" }}</small>
+            </center>
+            <hr>
+            {{ object.content|markdown }}
+        </div>
+    </div>
+{% endblock %}

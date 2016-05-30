@@ -1,0 +1,20 @@
+<div class="navbar navbar-default" ng-controller="NavbarController" >
+    <div class="container">
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+{#                <li class="" id="index"><a href="{% url 'blog:index' %}">Index</a></li>#}
+                <li id="blog"><a href="{% url 'blog:list' %}">Blog</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {% if  user.is_authenticated %}
+                    <li><a href="#">{{ user.username }}</a></li>
+                {% else %}
+
+                    <li><a href="{% url 'blog:login' %}">login</a></li>
+                    <li><a href="#">register</a></li>
+
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>

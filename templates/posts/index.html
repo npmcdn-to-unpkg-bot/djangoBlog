@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+
+
+{% for obj in object_list %}
+    <a href="{% url 'posts:detail' id=obj.id %}">{{ obj.title }}</a><br>
+    {{ obj.content|linebreaks|truncatechars:100 }}<br>
+    {{ obj.updated }}<br>
+    {{ obj.id }}<br>
+    <hr>
+{% endfor %}
+<div class="pagination">
+    <span class="step-links">
+        {% if object_list.has_previous %}
+            <a href="?page={{ object_list.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+        </span>
+
+        {% if object_list.has_next %}
+            <a href="?{{ page_request_var }}={{ object_list.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+</body>
+</html>

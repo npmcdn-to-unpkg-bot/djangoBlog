@@ -1,0 +1,21 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    {% include 'statics.html' %}
+    {% block static_header %}{% endblock %}
+</head>
+<body ng-app="{% block ng_module %}{% endblock %}">
+
+{% include 'navbar.html' %}
+
+{% block content %}{% endblock %}
+
+{% block static_footer %}{% endblock %}
+
+{% include 'footer.html' %}
+
+</body>
+</html>

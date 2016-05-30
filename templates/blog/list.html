@@ -1,0 +1,38 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+    <div class="container content">
+        <div class="col-sm-offset-1 col-sm-6">
+            {% for object in object_list %}
+                <div>
+                    <div>
+                        <h1><a href="{% url 'blog:detail' object.slug %}">{{ object.title }}</a></h1>
+                    </div>
+                    <div>
+                        <small id="update_time">last modifed at {{ object.modified|date:"Y-m-d H:i" }}</small>
+                    </div>
+                    <div>
+                        {{ object.content }}
+                    </div>
+                    <hr>
+                </div>
+            {% endfor %}
+            {% if object_list.has_previous %}
+                <a href="?page={{ object_list.previous_page_number }}">previous</a>
+            {% endif %}
+
+            {% if object_list.has_next %}
+                <a href="?{{ page_request_var }}={{ object_list.next_page_number }}">next</a>
+            {% endif %}
+        </div>
+
+        <div class="col-sm-2 col-sm-offset-1" ng-controller="TagController">
+            <h2>Tags</h2>
+            {% for tag in tags %}
+                <a href="{% url 'blog:filter' tag.name %}">{{ tag.name }}</a><br>
+            {% endfor %}
+        </div>
+
+
+    </div>
+
+{% endblock %}
