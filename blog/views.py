@@ -40,8 +40,9 @@ def filter(request, tag=None):
     # end_date = datetime.date(2016, 6, 30)
     queryset = Article.objects.filter(tag=tag).order_by('created')
     # print Tag.objects.filter(name=tag).count()
+    print queryset.count()
     context = {
-        "object_lists": queryset,
+        "object_list": queryset,
         "tags": tags
     }
     return render(request, 'blog/list.html', context)

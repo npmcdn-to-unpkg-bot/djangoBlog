@@ -28,7 +28,7 @@ if socket.gethostname() == 'zhaochy-laptop':
     DEBUG = True
 else:
     DEBUG = False
-    ADMINS = ('zhaochy', 'zhaochy_2015@hotmail.com')
+    # ADMINS = ('zhaochy', 'zhaochy_2015@hotmail.com')
 # DEBUG = True
 
 ALLOWED_HOSTS = ['localhost']
