@@ -5,3 +5,11 @@
 *.pyc
 .idea/*
 db.sqlite3
+static/*
+static
+zhaochy_cn/custom.py
+zhaochy_cn/custom_deploy.py
+dist/*
+fabfile.py
+database_backup/*
+

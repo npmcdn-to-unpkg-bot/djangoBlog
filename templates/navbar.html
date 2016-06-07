@@ -5,7 +5,6 @@
                 {#                <li class="" id="index"><a href="{% url 'blog:index' %}">Index</a></li>#}
                 <li id="blog"><a href="{% url 'blog:list' %}">Blog</a></li>
                 <li><a href="{% url 'blog:cv' 'en' %}">My Resume</a></li>
-
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if  user.is_authenticated %}

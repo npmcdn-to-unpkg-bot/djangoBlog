@@ -12,9 +12,11 @@ class Tag(models.Model):
     def __unicode__(self):
         return smart_unicode(self.name)
 
-        # def
-        # def __str__(self):
-        #     return self.name.encode('utf-8').strip()
+    # def __str__(self):
+        # print smart_unicode(self.name)
+        # return smart_unicode(self.name)
+
+
         # class Meta:
         #     def get_Article_num(self):
         #         return Article.objects.filter(tag=self.name).count()
