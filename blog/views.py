@@ -2,7 +2,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render
 import datetime
 
-from .models import Article, Tag
+from .models import Article, Tag, Resume
 
 
 # Create your views here.
@@ -57,12 +57,24 @@ def login(request):
 
 
 def detail(request, slug):
-    print slug
+    # print slug
     try:
         obj = Article.objects.get(slug=slug)
     except Exception, e:
         print e.message
         # return render(request,)
+        return render(request, 'blog/list.html')
+    context = {
+        "object": obj
+    }
+    return render(request, 'blog/detail.html', context)
+
+
+def cv(request, slug):
+    queryset = Resume.objects.all()
+    try:
+        obj = Resume.objects.get(slug=slug)
+    except Exception, e:
         return render(request, 'blog/list.html')
     context = {
         "object": obj

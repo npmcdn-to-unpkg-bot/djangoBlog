@@ -12,12 +12,14 @@ class Tag(models.Model):
     def __unicode__(self):
         return smart_unicode(self.name)
 
-    # def
     # def __str__(self):
-    #     return self.name.encode('utf-8').strip()
-    # class Meta:
-    #     def get_Article_num(self):
-    #         return Article.objects.filter(tag=self.name).count()
+        # print smart_unicode(self.name)
+        # return smart_unicode(self.name)
+
+
+        # class Meta:
+        #     def get_Article_num(self):
+        #         return Article.objects.filter(tag=self.name).count()
 
 
 class Article(models.Model):
@@ -33,3 +35,14 @@ class Article(models.Model):
 
     class Meta:
         ordering = ['-modified']
+
+
+class Resume(models.Model):
+    title = models.CharField(max_length=200)
+    content = MarkdownField()
+    slug = models.SlugField(max_length=200, unique=True)
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+
+    def __unicode__(self):
+        return smart_unicode(self.title)

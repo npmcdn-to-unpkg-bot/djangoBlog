@@ -25,4 +25,5 @@ urlpatterns = [
     url(r'^login$', views.login, name='login'),
     url(r'^detail/(?P<slug>[-\w]+)', views.detail, name='detail'),
     url(r'^filter/(?P<tag>[\w]+)', views.filter, name='filter'),
+    url(r'^resume/(?P<slug>[-\w]+)', views.cv, name='cv'),
 ]

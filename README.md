@@ -1,8 +1,8 @@
-## Personal Blog with Django and markdown
+## Personal Blog with Django, mysql and markdown
 
-## install
+### Install
 ```bash
-apt-get install python-imaging
+apt-get install python-imaging libmysqlclient-dev
 ```
 
 ```
