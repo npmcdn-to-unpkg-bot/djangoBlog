@@ -12,7 +12,7 @@ compress local files for deployment:
 >>> fab build
 
 2. deploy dist package
-fab deply
+fab deploy
 
 3. rollback
 fab rollback
