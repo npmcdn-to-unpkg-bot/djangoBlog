@@ -9,10 +9,10 @@
                         <h1><a href="{% url 'blog:detail' object.slug %}">{{ object.title }}</a></h1>
                     </div>
                     <div>
-                        <small id="update_time">last modifed at {{ object.modified|date:"Y-m-d H:i" }}</small>
+                        <em id="update_time" style="color: #8a6d3b">更新于：{{ object.modified|date:"Y-m-d H:i" }}</em>
                     </div>
                     <div>
-                        {{ object.content|markdown|linebreaks|truncatechars:60 }}
+                        {{ object.content|markdown|striptags|safe|truncatechars:150|linebreaks }}
                     </div>
                     <hr>
                 </div>
