@@ -1,3 +1,5 @@
+# coding=utf8
+
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render
 import datetime
@@ -12,9 +14,12 @@ def index(request):
 
 
 def blog_list(request):
+    """
+    blog index
+    获取博客的文章列表
+    """
     now = datetime.datetime.now()
-    print now
-    queryset = Article.objects.all()
+    queryset = Article.objects.all().filter(publish=True)
     paginator = Paginator(queryset, 5)  # show 5 obj per page
     page_request_var = 'page'
     page = request.GET.get(page_request_var)
@@ -38,9 +43,9 @@ def filter(request, tag=None):
     tags = Tag.objects.all()
     # start_date = datetime.date(2016, 5, 30)
     # end_date = datetime.date(2016, 6, 30)
-    queryset = Article.objects.filter(tag=tag).order_by('created')
+    queryset = Article.objects.filter(tag=tag, publish=True).order_by('created')
     # print Tag.objects.filter(name=tag).count()
-    print queryset.count()
+    # print queryset.count()
     context = {
         "object_list": queryset,
         "tags": tags
@@ -59,9 +64,9 @@ def login(request):
 def detail(request, slug):
     # print slug
     try:
-        obj = Article.objects.get(slug=slug)
+        obj = Article.objects.get(slug=slug, publish=True)
     except Exception, e:
-        print e.message
+        print (e.message)
         # return render(request,)
         return render(request, 'blog/list.html')
     context = {

@@ -12,7 +12,7 @@ class Tag(models.Model):
     def __unicode__(self):
         return smart_unicode(self.name)
 
-    # def __str__(self):
+        # def __str__(self):
         # print smart_unicode(self.name)
         # return smart_unicode(self.name)
 
@@ -28,6 +28,7 @@ class Article(models.Model):
     slug = models.SlugField(max_length=200, unique=True)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
+    publish = models.BooleanField(default=False)
     tag = models.ForeignKey('blog.Tag', on_delete=models.SET_NULL, null=True)
 
     def __unicode__(self):

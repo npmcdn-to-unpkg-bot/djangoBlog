@@ -14,10 +14,11 @@
     {{ obj.id }}<br>
     <hr>
 {% endfor %}
-<div class="pagination">
-    <span class="step-links">
+{#<div class="pagination">#}
+<nav>
+    <ul class="pager">
         {% if object_list.has_previous %}
-            <a href="?page={{ object_list.previous_page_number }}">previous</a>
+            <li><a href="?page={{ object_list.previous_page_number }}">previous</a></li>
         {% endif %}
 
         <span class="current">
@@ -25,9 +26,10 @@
         </span>
 
         {% if object_list.has_next %}
-            <a href="?{{ page_request_var }}={{ object_list.next_page_number }}">next</a>
+            <li><a href="?{{ page_request_var }}={{ object_list.next_page_number }}">next</a></li>
         {% endif %}
-    </span>
-</div>
+    </ul>
+</nav>
+{#</div>#}
 </body>
 </html>
