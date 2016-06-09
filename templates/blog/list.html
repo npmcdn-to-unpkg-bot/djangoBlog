@@ -12,18 +12,39 @@
                         <small id="update_time">last modifed at {{ object.modified|date:"Y-m-d H:i" }}</small>
                     </div>
                     <div>
-                        {{ object.content|markdown }}
+                        {{ object.content|markdown|linebreaks|truncatechars:60 }}
                     </div>
                     <hr>
                 </div>
             {% endfor %}
-            {% if object_list.has_previous %}
-                <a href="?page={{ object_list.previous_page_number }}">previous</a>
-            {% endif %}
+            <nav>
+                <ul class="pagination">
+                    {% if object_list.has_previous %}
+                        <li>
+                            <a href="?page={{ object_list.previous_page_number }} " aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="disabled"><a><span aria-hidden="true">&laquo;</span></a></li>
+                    {% endif %}
 
-            {% if object_list.has_next %}
-                <a href="?{{ page_request_var }}={{ object_list.next_page_number }}">next</a>
-            {% endif %}
+                    {% for obj in object_list.paginator.page_range %}
+                        {% if object_list.number == obj %}
+                            <li class="active"><a href="#">{{ obj }}</a></li>
+                        {% else %}
+                            <li><a href="?{{ page_request_var }}={{ obj }}">{{ obj }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if object_list.has_next %}
+                        <li><a href="?{{ page_request_var }}={{ object_list.next_page_number }}"><span
+                                aria-hidden="true">&raquo;</span></a></li>
+                    {% else %}
+                        <li class="disabled"><a><span aria-hidden="true">&raquo;</span></a></li>
+                    {% endif %}
+                </ul>
+            </nav>
         </div>
 
         <div class="col-sm-2 col-sm-offset-1" ng-controller="TagController">
