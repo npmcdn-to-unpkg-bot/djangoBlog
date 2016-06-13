@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 from django.utils.encoding import smart_unicode
 from django.db import models
 from zcy_md.models import MarkdownField
+from django.core.urlresolvers import reverse
 
 
 # Create your models here.
@@ -36,6 +37,9 @@ class Article(models.Model):
 
     class Meta:
         ordering = ['-modified']
+
+    def get_absolute_url(self):
+        return "/api/blog/%i/" % self.id
 
 
 class Resume(models.Model):

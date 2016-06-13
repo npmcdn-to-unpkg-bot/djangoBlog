@@ -3,8 +3,9 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render
 import datetime
-
-from .models import Article, Tag, Resume
+from rest_framework import viewsets
+from serializers import ArticleSerializer
+from models import *
 
 
 # Create your views here.
@@ -65,6 +66,7 @@ def detail(request, slug):
     # print slug
     try:
         obj = Article.objects.get(slug=slug, publish=True)
+        # print obj.get_absolute_url()
     except Exception, e:
         print (e.message)
         # return render(request,)
@@ -85,3 +87,10 @@ def cv(request, slug):
         "object": obj
     }
     return render(request, 'blog/detail.html', context)
+
+
+class ArticleViewSet(viewsets.ModelViewSet):
+    serializer_class = ArticleSerializer
+
+    def get_queryset(self):
+        return Article.objects.all()

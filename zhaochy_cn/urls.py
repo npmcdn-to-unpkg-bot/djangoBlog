@@ -23,7 +23,7 @@ urlpatterns = [
     url(r'^', include('blog.urls')),
     url(r'^markdown/', include('zcy_md.urls')),
     url(r'^post/', include('posts.urls')),
-    url(r'^api/', include('api.urls')),
+    # url(r'^api/', include('api.urls')),
 ]
 
 if settings.DEBUG:
